@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Freedom Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #0f172a; color: white; font-family: sans-serif; }
+        .accent-green { color: #10b981; }
+        input { background: #1e293b; border: 1px solid #334155; padding: 10px; border-radius: 8px; width: 100%; color: white; margin-bottom: 15px; }
+    </style>
+</head>
+<body class="p-6 flex flex-col items-center">
+    <div class="max-w-md w-full bg-slate-800 p-8 rounded-2xl shadow-2xl">
+        <h1 class="text-2xl font-bold mb-2">Freedom <span class="accent-green">Calculator</span></h1>
+        <p class="text-slate-400 text-sm mb-6">Find out exactly when you can quit your 9-to-5.</p>
+
+        <label class="block text-sm mb-1">Monthly Expenses ($)</label>
+        <input type="number" id="expenses" placeholder="e.g. 3000" oninput="calculate()">
+
+        <label class="block text-sm mb-1">Current Savings ($)</label>
+        <input type="number" id="savings" placeholder="e.g. 10000" oninput="calculate()">
+
+        <label class="block text-sm mb-1">Monthly Contribution ($)</label>
+        <input type="number" id="contribution" placeholder="e.g. 500" oninput="calculate()">
+
+        <div class="mt-6 p-4 bg-slate-900 rounded-xl text-center">
+            <p class="text-slate-400 uppercase text-xs tracking-widest">Your Freedom Target</p>
+            <h2 id="target" class="text-3xl font-bold accent-green">$0</h2>
+            <p class="text-slate-400 mt-4 uppercase text-xs tracking-widest">Years to Freedom</p>
+            <h2 id="years" class="text-3xl font-bold text-white">--</h2>
+        </div>
+    </div>
+
+    <script>
+        function calculate() {
+            const exp = parseFloat(document.getElementById('expenses').value) || 0;
+            const sav = parseFloat(document.getElementById('savings').value) || 0;
+            const con = parseFloat(document.getElementById('contribution').value) || 0;
+            
+            // The 4% Rule: Target = Annual Expenses * 25
+            const target = (exp * 12) * 25;
+            document.getElementById('target').innerText = '$' + target.toLocaleString();
+
+            // Compound Interest Calculation (Assuming 8% annual return)
+            let current = sav;
+            let months = 0;
+            if(con > 0 || current > 0) {
+                while(current < target && months < 600) { // Cap at 50 years
+                    current += con;
+                    current *= (1 + 0.08/12);
+                    months++;
+                }
+                const years = (months / 12).toFixed(1);
+                document.getElementById('years').innerText = years + " Years";
+            }
+        }
+    </script>
+</body>
+</html>
