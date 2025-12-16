@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Financial Freedom Calculator</title>
+    <title>2026 Freedom Calculator</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { background-color: #0f172a; color: white; font-family: sans-serif; }
@@ -15,9 +15,10 @@
 </head>
 <body class="p-6 flex flex-col items-center">
     <div class="max-w-md w-full bg-slate-800 p-8 rounded-2xl shadow-2xl border border-slate-700">
-        <h1 class="text-2xl font-bold mb-2 text-center">Freedom <span class="accent-green">Calculator</span></h1>
+        <h1 class="text-2xl font-bold mb-2 text-center">Freedom <span class="accent-green">Project 2026</span></h1>
+        <p class="text-slate-400 text-center text-xs mb-6">Calculate your exit strategy from the 9-to-5.</p>
         
-        <div class="space-y-4 mt-4">
+        <div class="space-y-4">
             <div>
                 <label class="block text-xs uppercase tracking-widest text-slate-400 mb-1">Monthly Expenses ($)</label>
                 <input type="number" id="expenses" placeholder="e.g. 3000" oninput="calculate()">
@@ -39,12 +40,12 @@
         </div>
 
         <div class="mt-8 pt-6 border-t border-slate-700">
-            <h3 class="text-sm font-semibold text-center mb-2">🚀 Want our "Top 3 Stocks for 2025" list?</h3>
-            <p class="text-xs text-slate-400 text-center mb-4">Hit your Freedom Date faster with our weekly picks.</p>
+            <h3 class="text-sm font-semibold text-center mb-2">🚀 Get the "Top 3 Stocks for 2026"</h3>
+            <p class="text-xs text-slate-400 text-center mb-4">The exact watchlist we're using to accelerate our freedom dates.</p>
             
             <form action="https://formspree.io/f/YOUR_UNIQUE_ID" method="POST">
-                <input type="email" name="email" placeholder="Enter your best email" required>
-                <button type="submit" class="btn-primary">Send Me The List</button>
+                <input type="email" name="email" placeholder="Enter your email" required>
+                <button type="submit" class="btn-primary">Send 2026 Watchlist</button>
             </form>
         </div>
     </div>
@@ -62,7 +63,7 @@
             if(con > 0 || current > 0) {
                 while(current < target && months < 720) { 
                     current += con;
-                    current *= (1 + 0.08/12);
+                    current *= (1 + 0.08/12); // Assuming 8% annual growth
                     months++;
                 }
                 const years = (months / 12).toFixed(1);
